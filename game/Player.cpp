@@ -8746,10 +8746,11 @@ void idPlayer::AdjustSpeed( void ) {
 		bobFrac = 0.0f;
  	} else if ( !physicsObj.OnLadder() && ( usercmd.buttons & BUTTON_RUN ) && ( usercmd.forwardmove || usercmd.rightmove ) && ( usercmd.upmove >= 0 ) ) {
 		bobFrac = 1.0f;
-		speed = pm_speed.GetFloat();
+		speed = pm_walkspeed.GetFloat(); // by flipping this and the other, player walks by default
 	} else {
-		speed = pm_walkspeed.GetFloat();
+		speed = pm_speed.GetFloat(); // run on shift press 
 		bobFrac = 0.0f;
+		// decrement stamina over time
 	}
 
 	speed *= PowerUpModifier(PMOD_SPEED);

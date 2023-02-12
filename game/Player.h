@@ -57,6 +57,16 @@ const int	ASYNC_PLAYER_INV_WPMOD_BITS = 3;							// 3 bits (max of 3 mods per gu
 // NOTE: protocol 69 used 6 bits, but that's only used for client -> server traffic, so doesn't affect backwards protocol replay compat
 const int	IMPULSE_NUMBER_OF_BITS		= 8;							// allows for 2<<X impulses
 
+// QUAKEOLOGIC STATS
+const int MAX_EXHAUSTION = 100;
+const int MAX_HUNGER = 100;
+const int MAX_THIRST = 100;
+const int MAX_IMMUNITY = 100; // recall high immunity is good 
+const int MAX_INFECTION = 100;
+// remove if unable to implement
+const int MAX_REPUTATION = 100; // recall high rep is good
+const int MAX_STAMINA = 100;
+
 #define MAX_CONCURRENT_VOICES	3
 
 // RAVEN BEGIN
