@@ -64,7 +64,6 @@ const int MAX_THIRST = 100;
 const int MAX_IMMUNITY = 100; // recall high immunity is good 
 const int MAX_INFECTION = 100;
 // remove if unable to implement
-const int MAX_REPUTATION = 100; // recall high rep is good
 const int MAX_STAMINA = 100;
 
 #define MAX_CONCURRENT_VOICES	3

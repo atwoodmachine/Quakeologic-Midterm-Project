@@ -8750,7 +8750,8 @@ void idPlayer::AdjustSpeed( void ) {
 	} else {
 		speed = pm_speed.GetFloat(); // run on shift press 
 		bobFrac = 0.0f;
-		// decrement stamina over time
+		//TODO: decrement stamina over time
+
 	}
 
 	speed *= PowerUpModifier(PMOD_SPEED);
