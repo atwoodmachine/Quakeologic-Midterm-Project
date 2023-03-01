@@ -62,9 +62,7 @@ const int MAX_EXHAUSTION = 100;
 const int MAX_HUNGER = 100;
 const int MAX_THIRST = 100;
 const int MAX_IMMUNITY = 100; // recall high immunity is good 
-const int MAX_INFECTION = 100;
-// remove if unable to implement
-const int MAX_STAMINA = 100;
+
 
 #define MAX_CONCURRENT_VOICES	3
 
@@ -216,6 +214,15 @@ public:
 	int						clip[ MAX_WEAPONS ];
 	int						powerupEndTime[ POWERUP_MAX ];
 	int						weaponMods[ MAX_WEAPONS ];
+
+//survival stats
+	int hunger;
+	int exhaustion;
+	int thirst;
+	int immunity;
+	bool infected;
+//timer things
+	
 
  	// multiplayer
  	int						ammoPredictTime;
@@ -433,7 +440,10 @@ public:
 // squirrel: Mode-agnostic buymenus
 	float					buyMenuCash;
 // RITUAL END
-
+// sneppo start
+	int nextSurvivalTick;
+	int numDebuffs;
+	int nextDebuffTick;
 public:
 	CLASS_PROTOTYPE( idPlayer );
 

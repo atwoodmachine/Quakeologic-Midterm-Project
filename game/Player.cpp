@@ -2055,6 +2055,17 @@ void idPlayer::Spawn( void ) {
 //RITUAL END
 
 	itemCosts = static_cast< const idDeclEntityDef * >( declManager->FindType( DECL_ENTITYDEF, "ItemCostConstants", false ) );
+
+// set survival stats
+	inventory.hunger = 50; // gui done
+	inventory.thirst = 25; // gui done
+	inventory.immunity = 75; //gui done
+	inventory.exhaustion = 55; //gui done
+	inventory.infected = false;
+
+// survival pulse set
+	nextSurvivalTick = 0;
+	numDebuffs = 0;
 }
 
 /*
@@ -3387,6 +3398,7 @@ void idPlayer::UpdateHudAmmo( idUserInterface *_hud ) {
 idPlayer::UpdateHudStats
 ===============
 */
+// SEZO
 void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	int temp;
 	
@@ -3408,6 +3420,24 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 		_hud->HandleNamedEvent ( "updateArmor" );
 	}
 	
+	// SURVIVAL STATS
+	temp = _hud->State().GetInt("player_hunger", "-1");
+	if (temp != inventory.hunger) { 
+		_hud->SetStateInt("player_hunger", inventory.hunger);
+	}
+	temp = _hud->State().GetInt("player_thirst", "-1");
+	if (temp != inventory.thirst) {
+		_hud->SetStateInt("player_thirst", inventory.thirst);
+	}
+	temp = _hud->State().GetInt("player_exhaustion");
+	if (temp != inventory.hunger) {
+		_hud->SetStateInt("player_exhaustion", inventory.exhaustion);
+	}
+	temp = _hud->State().GetInt("player_immunity");
+	if (temp != inventory.immunity) {
+		_hud->SetStateInt("player_immunity", inventory.immunity);
+	}
+
 	// Boss bar
 	if ( _hud->State().GetInt ( "boss_health", "-1" ) != (bossEnemy ? bossEnemy->health : -1) ) {
 		if ( !bossEnemy || bossEnemy->health <= 0 ) {
@@ -3437,6 +3467,9 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	}
 	
 	_hud->StateChanged( gameLocal.time );
+
+	
+
 }
 
 /*
@@ -4080,7 +4113,7 @@ bool idPlayer::Give( const char *statname, const char *value, bool dropped ) {
 		//In MP, you can get twice your max from pickups
 		boundaryArmor *= 2;
 	}
-
+	// SEZO reference
 	if ( !idStr::Icmp( statname, "health" ) ) {
 		if ( health >= boundaryHealth ) {
 			return false;
@@ -9284,6 +9317,9 @@ idPlayer::Think
 Called every tic for each player
 ==============
 */
+
+// updateTime < now -> only time to reset time
+
 void idPlayer::Think( void ) {
 	renderEntity_t *headRenderEnt;
  
@@ -9645,6 +9681,41 @@ void idPlayer::Think( void ) {
 		inBuyZone = false;
 
 	inBuyZonePrev = false;
+
+	// sneppo start - stats ticking works!
+	int now = gameLocal.time;
+	if (nextSurvivalTick < now) {
+		gameLocal.Printf("Got here! Survival ticks");
+		if (inventory.hunger < 100) {
+			inventory.hunger += 1;
+		}
+		if (inventory.exhaustion < 100) {
+			inventory.exhaustion += 1;
+		}
+		if (inventory.thirst < 100) {
+			inventory.thirst += 1;
+		}
+		nextSurvivalTick = gameLocal.time + 2000; // survival tick rate
+	}
+
+	if (nextDebuffTick < now) {
+		numDebuffs = 0;
+		if (inventory.hunger == 100) {
+			numDebuffs += 1;
+		}
+		if (inventory.thirst == 100) {
+			numDebuffs += 1;
+		}
+		if (inventory.exhaustion == 100) {
+			numDebuffs += 1;
+		}
+		if (inventory.infected) {
+			numDebuffs += 5;
+		}
+		health -= numDebuffs;
+		nextDebuffTick = gameLocal.time + 2000;
+	}
+	
 }
 
 /*
