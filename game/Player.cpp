@@ -2066,6 +2066,7 @@ void idPlayer::Spawn( void ) {
 // survival pulse set
 	nextSurvivalTick = 0;
 	numDebuffs = 0;
+	nextDebuffTick = 0;
 }
 
 /*
@@ -9685,7 +9686,6 @@ void idPlayer::Think( void ) {
 	// sneppo start - stats ticking works!
 	int now = gameLocal.time;
 	if (nextSurvivalTick < now) {
-		gameLocal.Printf("Got here! Survival ticks");
 		if (inventory.hunger < 100) {
 			inventory.hunger += 1;
 		}
@@ -9697,24 +9697,33 @@ void idPlayer::Think( void ) {
 		}
 		nextSurvivalTick = gameLocal.time + 2000; // survival tick rate
 	}
+	idEntity* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
 
 	if (nextDebuffTick < now) {
+
 		numDebuffs = 0;
 		if (inventory.hunger == 100) {
 			numDebuffs += 1;
+
 		}
 		if (inventory.thirst == 100) {
 			numDebuffs += 1;
+
 		}
 		if (inventory.exhaustion == 100) {
 			numDebuffs += 1;
+
 		}
 		if (inventory.infected) {
 			numDebuffs += 5;
 		}
+		//damage player
 		health -= numDebuffs;
-		nextDebuffTick = gameLocal.time + 2000;
+		nextDebuffTick = gameLocal.time + 5000;
 	}
+
 	
 }
 
