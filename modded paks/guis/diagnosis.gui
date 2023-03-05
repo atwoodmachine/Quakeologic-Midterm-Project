@@ -1,0 +1,10 @@
+windowDef Desktop
+{
+	rect	0,0,640,480
+	windowDef diagnosis
+	{
+		rect	6,8,194,85
+		visible	1
+		backcolor	1,0,0,1
+	}
+}

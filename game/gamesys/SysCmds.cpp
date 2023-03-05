@@ -3038,7 +3038,7 @@ void Cmd_ClientOverflowReliable_f( const idCmdArgs& args ) {
 }
 #endif
 
-// SEZO
+// SNEPPO
 void Cmd_Hunger_i(const idCmdArgs& args) {
 	idPlayer* player;
 	player = gameLocal.GetLocalPlayer();
@@ -3046,6 +3046,67 @@ void Cmd_Hunger_i(const idCmdArgs& args) {
 	gameLocal.Printf("Hunger value is: %d \n", player->inventory.hunger);
 	gameLocal.Printf("The hunger type is: ");
 	gameLocal.Printf(typeid(player->inventory.hunger).name());
+}
+
+void Cmd_Crafting_i(const idCmdArgs& args) {
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+	gameLocal.Printf("Here are your ingredients:\n");
+	gameLocal.Printf("You have %d red twyre\n", player->inventory.redTwyre);
+	gameLocal.Printf("You have %d green twyre\n", player->inventory.greenTwyre);
+	gameLocal.Printf("You have %d white twyre\n", player->inventory.whiteTwyre);
+	gameLocal.Printf("You have %d water\n", player->inventory.water);
+	gameLocal.Printf("Here are your items:\n");
+	gameLocal.Printf("You have %d blood tinctures\n", player->inventory.bloodTincture);
+	gameLocal.Printf("You have %d nerves tinctures\n", player->inventory.nervesTincture);
+	gameLocal.Printf("You have %d bone tinctures\n", player->inventory.boneTincture);
+}
+
+// crafting commands. it is clapped but it works* *might work
+// resippy reference: white + green make bone, white + red make blood, red + green make nerves
+
+void Cmd_Craft_Bone(const idCmdArgs& args) {
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+	if (player->inventory.water <= 0 || player->inventory.whiteTwyre <= 0 || player->inventory.greenTwyre <= 0) {
+		gameLocal.Printf("Not enough ingredients");
+		return;
+	}
+	player->inventory.whiteTwyre -= 1;
+	player->inventory.greenTwyre -= 1;
+	player->inventory.water -= 1;
+	player->inventory.boneTincture += 1;
+}
+
+void Cmd_Craft_Nerves(const idCmdArgs& args) {
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+	if (player->inventory.water <= 0 || player->inventory.redTwyre <= 0 || player->inventory.greenTwyre <= 0) {
+		gameLocal.Printf("Not enough ingredients");
+		return;
+	}
+	player->inventory.redTwyre -= 1;
+	player->inventory.greenTwyre -= 1;
+	player->inventory.water -= 1;
+	player->inventory.nervesTincture += 1;
+
+}
+
+void Cmd_Craft_Blood(const idCmdArgs& args) {
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+	if (player->inventory.water <= 0 || player->inventory.whiteTwyre <= 0 || player->inventory.redTwyre <= 0) {
+		gameLocal.Printf("Not enough ingredients");
+		return;
+	}
+	player->inventory.whiteTwyre -= 1;
+	player->inventory.redTwyre -= 1;
+	player->inventory.water -= 1;
+	player->inventory.bloodTincture += 1;
 }
 
 /*
@@ -3242,8 +3303,13 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand( "buyMenu",				Cmd_ToggleBuyMenu_f,		CMD_FL_GAME,				"Toggle buy menu (if in a buy zone and the game type supports it)" );
 	cmdSystem->AddCommand( "buy",					Cmd_BuyItem_f,				CMD_FL_GAME,				"Buy an item (if in a buy zone and the game type supports it)" );
 // RITUAL END
-// SNEPPO
+// SNEPPO debug
 	cmdSystem->AddCommand("showHunger", Cmd_Hunger_i, CMD_FL_GAME, "Show player hunger value");
+	cmdSystem->AddCommand("craftingSystem", Cmd_Crafting_i, CMD_FL_GAME, "Show player crafting system inventory");
+// sneppo functional
+	cmdSystem->AddCommand("craftBone", Cmd_Craft_Bone, CMD_FL_GAME, "Make a bone tincture");
+	cmdSystem->AddCommand("craftNerves", Cmd_Craft_Nerves, CMD_FL_GAME, "Make a nerves tincture");
+	cmdSystem->AddCommand("craftBlood", Cmd_Craft_Blood, CMD_FL_GAME, "Make a blood tincture");
 }
 
 /*

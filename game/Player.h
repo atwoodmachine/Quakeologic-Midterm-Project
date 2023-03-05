@@ -215,13 +215,23 @@ public:
 	int						powerupEndTime[ POWERUP_MAX ];
 	int						weaponMods[ MAX_WEAPONS ];
 
-//survival stats
+// survival stats
 	int hunger;
 	int exhaustion;
 	int thirst;
 	int immunity;
 	bool infected;
-//timer things
+
+// crafting ingredients
+	int redTwyre;
+	int whiteTwyre;
+	int greenTwyre;
+	int water;
+
+// crafted items
+	int boneTincture;
+	int bloodTincture;
+	int nervesTincture;
 	
 
  	// multiplayer

@@ -2067,6 +2067,16 @@ void idPlayer::Spawn( void ) {
 	nextSurvivalTick = 0;
 	numDebuffs = 0;
 	nextDebuffTick = 0;
+
+//starting crafting ingredients
+	inventory.redTwyre = 10;
+	inventory.whiteTwyre = 10;
+	inventory.greenTwyre = 10;
+	inventory.water = 10;
+// starting crafted items
+	inventory.bloodTincture = 0;
+	inventory.boneTincture = 0;
+	inventory.nervesTincture = 0;
 }
 
 /*
@@ -3399,7 +3409,6 @@ void idPlayer::UpdateHudAmmo( idUserInterface *_hud ) {
 idPlayer::UpdateHudStats
 ===============
 */
-// SEZO
 void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	int temp;
 	
@@ -3421,7 +3430,7 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 		_hud->HandleNamedEvent ( "updateArmor" );
 	}
 	
-	// SURVIVAL STATS
+	// SURVIVAL STATS HUD
 	temp = _hud->State().GetInt("player_hunger", "-1");
 	if (temp != inventory.hunger) { 
 		_hud->SetStateInt("player_hunger", inventory.hunger);
@@ -9318,9 +9327,6 @@ idPlayer::Think
 Called every tic for each player
 ==============
 */
-
-// updateTime < now -> only time to reset time
-
 void idPlayer::Think( void ) {
 	renderEntity_t *headRenderEnt;
  
@@ -9683,36 +9689,33 @@ void idPlayer::Think( void ) {
 
 	inBuyZonePrev = false;
 
-	// sneppo start - stats ticking works!
+	// sneppo start - survival stats ticking works!
 	int now = gameLocal.time;
 	if (nextSurvivalTick < now) {
-		if (inventory.hunger < 100) {
+		if (inventory.hunger < MAX_HUNGER) {
 			inventory.hunger += 1;
 		}
-		if (inventory.exhaustion < 100) {
+		if (inventory.exhaustion < MAX_EXHAUSTION) {
 			inventory.exhaustion += 1;
 		}
-		if (inventory.thirst < 100) {
+		if (inventory.thirst < MAX_THIRST) {
 			inventory.thirst += 1;
 		}
 		nextSurvivalTick = gameLocal.time + 2000; // survival tick rate
 	}
-	idEntity* player;
-	player = gameLocal.GetLocalPlayer();
-	if (!player)return;
 
 	if (nextDebuffTick < now) {
 
 		numDebuffs = 0;
-		if (inventory.hunger == 100) {
+		if (inventory.hunger == MAX_HUNGER) {
 			numDebuffs += 1;
 
 		}
-		if (inventory.thirst == 100) {
+		if (inventory.thirst == MAX_THIRST) {
 			numDebuffs += 1;
 
 		}
-		if (inventory.exhaustion == 100) {
+		if (inventory.exhaustion == MAX_EXHAUSTION) {
 			numDebuffs += 1;
 
 		}
