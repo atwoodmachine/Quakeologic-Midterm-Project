@@ -2372,7 +2372,7 @@ windowDef Desktop
 	}
 	windowDef hunger_val
 	{
-		rect	11,285,79,47
+		rect	6,285,174,34
 		visible	1
 		text	"gui::player_hunger"
 		textscale	0.5
@@ -2382,7 +2382,7 @@ windowDef Desktop
 	}
 	windowDef hunger_text
 	{
-		rect	7,248,114,38
+		rect	6,248,174,34
 		visible	1
 		forecolor	1,1,1,1
 		text	"Hunger "
@@ -2392,7 +2392,7 @@ windowDef Desktop
 	}
 	windowDef thirst_text
 	{
-		rect	7,165,100,35
+		rect	6,165,174,34
 		visible	1
 		forecolor	1,1,1,1
 		text	"Thirst"
@@ -2402,7 +2402,7 @@ windowDef Desktop
 	}
 	windowDef exhaustion_text
 	{
-		rect	7,84,174,34
+		rect	6,84,174,34
 		visible	1
 		forecolor	1,1,1,1
 		text	"Exhaustion"
@@ -2412,17 +2412,17 @@ windowDef Desktop
 	}
 	windowDef immunity_text
 	{
-		rect	6,8,139,31
+		rect	6,8,174,34
 		visible	1
 		forecolor	1,1,1,1
-		text	"Immunity "gui::player_immunity""
+		text	"Immunity"
 		textscale	0.5
 		font	"fonts/marine"
 		textstyle	2
 	}
 	windowDef thirst_val
 	{
-		rect	12,199,77,40
+		rect	6,205,174,34
 		visible	1
 		forecolor	1,1,1,1
 		text	"gui::player_thirst"
@@ -2431,7 +2431,7 @@ windowDef Desktop
 	}
 	windowDef exhaustion_val
 	{
-		rect	10,127,70,35
+		rect	6,127,174,34
 		visible	1
 		forecolor	1,1,1,1
 		text	"gui::player_exhaustion"
@@ -2441,12 +2441,140 @@ windowDef Desktop
 	}
 	windowDef immunity_val
 	{
-		rect	9,45,76,30
+		rect	6,45,174,34
 		visible	1
 		forecolor	1,1,1,1
 		text	"gui::player_immunity"
 		textscale	0.5
 		font	"fonts/marine"
 		textstyle	2
+	}
+	windowDef your_inv_text
+	{
+		rect	400,5,234,45
+		visible	1
+		forecolor	1,1,1,1
+		text	"Your inventory"
+		textscale	0.5
+		font	"fonts/marine"
+	}
+	windowDef red_twyre_text
+	{
+		rect	467,80,116,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"Red Twyre:"
+		textscale	0.2
+		font	"fonts/marine"
+	}
+	windowDef num_red
+	{
+		rect	585,80,36,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"gui::red_twyre"
+		textscale	0.2
+	}
+	windowDef green_twyre_text
+	{
+		rect	467,57,116,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"Green Twyre:"
+		textscale	0.2
+		font	"fonts/marine"
+	}
+	windowDef num_green
+	{
+		rect	585,57,36,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"gui::green_twyre"
+		textscale	0.2
+	}
+	windowDef white_twyre_text
+	{
+		rect	467,103,116,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"White Twyre:"
+		textscale	0.2
+		font	"fonts/marine"
+	}
+	windowDef num_white
+	{
+		rect	585,103,36,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"gui::white_twyre"
+		textscale	0.2
+	}
+	windowDef bone_tinct_text
+	{
+		rect	467,163,116,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"Bone Tinctures:"
+		textscale	0.2
+		font	"fonts/marine"
+	}
+	windowDef num_bone
+	{
+		rect	585,163,36,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"gui::bone_tinct"
+		textscale	0.2
+	}
+	windowDef blood_tinct_text
+	{
+		rect	467,143,116,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"Blood Tinctures:"
+		textscale	0.2
+		font	"fonts/marine"
+	}
+	windowDef num_blood
+	{
+		rect	585,143,36,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"gui::blood_tinct"
+		textscale	0.2
+	}
+	windowDef water_text
+	{
+		rect	467,122,116,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"Water:"
+		textscale	0.2
+		font	"fonts/marine"
+	}
+	windowDef num_water
+	{
+		rect	585,122,36,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"gui::water"
+		textscale	0.2
+	}
+	windowDef nerves_tinct_text
+	{
+		rect	467,188,116,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"Nerves Tinctures:"
+		textscale	0.2
+		font	"fonts/marine"
+	}
+	windowDef num_nerves
+	{
+		rect	585,188,36,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"gui::nerves_tinct"
+		textscale	0.2
 	}
 }

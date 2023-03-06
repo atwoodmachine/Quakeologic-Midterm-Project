@@ -3447,6 +3447,36 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	if (temp != inventory.immunity) {
 		_hud->SetStateInt("player_immunity", inventory.immunity);
 	}
+	//ITS CLAPPED, BUT IT WORKS
+	temp = _hud->State().GetInt("red_twyre");
+	if (temp != inventory.redTwyre) {
+		_hud->SetStateInt("red_twyre", inventory.redTwyre);
+	}
+	temp = _hud->State().GetInt("green_twyre");
+	if (temp != inventory.greenTwyre) {
+		_hud->SetStateInt("green_twyre", inventory.greenTwyre);
+	}
+	temp = _hud->State().GetInt("white_twyre");
+	if (temp != inventory.whiteTwyre) {
+		_hud->SetStateInt("white_twyre", inventory.whiteTwyre);
+	}
+	temp = _hud->State().GetInt("water");
+	if (temp != inventory.greenTwyre) {
+		_hud->SetStateInt("water", inventory.water);
+	}
+	temp = _hud->State().GetInt("blood_tinct");
+	if (temp != inventory.bloodTincture) {
+		_hud->SetStateInt("blood_tinct", inventory.bloodTincture);
+	}
+	temp = _hud->State().GetInt("bone_tinct");
+	if (temp != inventory.boneTincture) {
+		_hud->SetStateInt("bone_tinct", inventory.boneTincture);
+	}
+	temp = _hud->State().GetInt("nerves_tinct");
+	if (temp != inventory.nervesTincture) {
+		_hud->SetStateInt("nerves_tinct", inventory.nervesTincture);
+	}
+
 
 	// Boss bar
 	if ( _hud->State().GetInt ( "boss_health", "-1" ) != (bossEnemy ? bossEnemy->health : -1) ) {
