@@ -2077,6 +2077,19 @@ void idPlayer::Spawn( void ) {
 	inventory.bloodTincture = 0;
 	inventory.boneTincture = 0;
 	inventory.nervesTincture = 0;
+
+// disease system
+	gameLocal.random.SetSeed(time(NULL));
+	rand = gameLocal.random.RandomInt(2);
+	diseaseType = rand; // 0 is blood, 1 is bones, 2 is nerves
+
+	sympt1 = false;
+	sympt2 = false;
+	sympt3 = false;
+	sympt4 = false;
+	sympt5 = false;
+	sympt6 = false;
+	sympt7 = false;
 }
 
 /*
@@ -6241,6 +6254,8 @@ idPlayer::Weapon_NPC
 */
 void idPlayer::Weapon_NPC( void ) {
 
+	//gameLocal.Printf("Looking at npc");
+
 	flagCanFire = false;
 
 	if ( idealWeapon != currentWeapon ) {
@@ -6253,6 +6268,7 @@ void idPlayer::Weapon_NPC( void ) {
 
 	if ( !focusEnt || focusEnt->health <= 0 ) {
 		ClearFocus ( );
+		isLookingAtNPC = false;
 		return;
 	}
 
@@ -6263,11 +6279,13 @@ void idPlayer::Weapon_NPC( void ) {
 			if ( focusAI ) {
 				focusAI->TalkTo( this );
 				talkingNPC = focusAI;
+				isLookingAtNPC = true;
 			}
 		}
 	} else if ( currentWeapon == SlotForWeapon ( "weapon_blaster" ) ) {
 		Weapon_Combat();
 	}
+	// SNEPPO
 }
 
 
@@ -14191,5 +14209,6 @@ int idPlayer::CanSelectWeapon(const char* weaponName)
 
 	return weaponNum;
 }
+
 
 // RITUAL END

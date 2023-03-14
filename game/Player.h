@@ -454,6 +454,19 @@ public:
 	int nextSurvivalTick;
 	int numDebuffs;
 	int nextDebuffTick;
+
+	bool isLookingAtNPC;
+
+// more bullshit
+	int diseaseType;
+	bool sympt1;
+	bool sympt2;
+	bool sympt3;
+	bool sympt4;
+	bool sympt5;
+	bool sympt6;
+	bool sympt7;
+	int rand;
 public:
 	CLASS_PROTOTYPE( idPlayer );
 
@@ -824,6 +837,8 @@ public:
 	void					SetCash( float newCashAmount );
 	void					ResetCash();
 // RITUAL END
+	// sneppo start
+	idEntityPtr<idAI> GetTalking(void);
 
 protected:
 	void					SetupHead( const char* modelKeyName = "", idVec3 headOffset = idVec3(0, 0, 0) );

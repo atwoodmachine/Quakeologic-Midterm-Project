@@ -9028,6 +9028,15 @@ windowDef Desktop
 					}
 				}
 			}
+			windowDef unnamed
+			{
+				rect	32,4,372,71
+				visible	1
+				forecolor	1,1,1,1
+				text	"DEBUG TEXT"
+				textscale	1
+				font	"fonts/marine"
+			}
 		}
 		windowDef pop_p_mods
 		{
