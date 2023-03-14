@@ -1554,208 +1554,94 @@ windowDef Desktop
 		{
 			rect	0,0,640,480
 			visible	0
-			windowDef t_load_title
+			windowDef title_text
 			{
-				rect	39,19,314,16
+				rect	42,15,243,62
 				visible	1
-				forecolor	1,1,1,0
-				text	"#str_200001"
-				textscale	.25
-				font	"fonts/marine"
-			}
-			windowDef load_b1
-			{
-				rect	21,256,208,52
-				visible	1
-				background	"gfx/guis/mainmenu/b2_dark"
-				matcolor	1,1,1,0.4
-			}
-			windowDef load_b2
-			{
-				rect	20,293,208,51
-				visible	1
-				background	"gfx/guis/mainmenu/b2_dark"
-				matcolor	1,1,1,0.4
-			}
-			windowDef load_b1_corner
-			{
-				rect	29,275,11,11
-				visible	1
-				background	"gfx/guis/mainmenu/corner"
-				matcolor	0.564,0.603,0.286,0.4
-			}
-			windowDef load_b2_corner
-			{
-				rect	29,312,11,11
-				visible	1
-				background	"gfx/guis/mainmenu/corner"
-				matcolor	0.564,0.603,0.286,0.4
-			}
-			windowDef load_t_b1
-			{
-				rect	39,268,193,23
-				visible	1
-				forecolor	1,1,1,0.8
-				text	"#str_200001"
-				textscale	.31
-				font	"fonts/marine"
-			}
-			windowDef load_t_b2
-			{
-				rect	39,305,193,23
-				visible	1
-				forecolor	1,1,1,0.8
-				text	"#str_200021"
-				textscale	.31
-				font	"fonts/marine"
-			}
-			windowDef load_back
-			{
-				rect	532,441,109,30
-				visible	1
-				background	"gfx/guis/mainmenu/b4_light"
-				matcolor	0.545,0.588,0.294,0
-			}
-			windowDef load_back_corner
-			{
-				rect	542,449,11,11
-				visible	1
-				background	"gfx/guis/mainmenu/corner"
-				matcolor	0.564,0.603,0.286,0
-			}
-			windowDef load_t_back
-			{
-				rect	552,443,88,17
-				visible	1
-				forecolor	1,1,1,0
-				text	"#str_200018"
-				textscale	.28
-				font	"fonts/marine"
-			}
-			windowDef load_t_name
-			{
-				rect	217,63,190,14
-				visible	1
-				forecolor	1,1,1,0.4
-				text	"#str_200925"
-				textscale	0.18
-				font	"fonts/lowpixel"
-			}
-			windowDef load_t_location
-			{
-				rect	396,63,190,14
-				visible	1
-				forecolor	1,1,1,0.4
-				text	"#str_200926"
-				textscale	0.18
-				font	"fonts/lowpixel"
-			}
-			windowDef load_hline
-			{
-				rect	217,75,410,6
-				visible	1
-				background	"gfx/guis/mainmenu/horiz_line2"
-				matcolor	0.545,0.588,0.294,0.26
-			}
-			listDef loadgamelist
-			{
-				rect	217,78,410,325
-				visible	1
-				listname	loadGame
-				itemheight	20
-				scrollbar	1
-				tabValigns	"0,0"
-				tabaligns	"0,0"
-				tabstops	"0,180,394"
-				backgroundHover	"gfx/guis/mainmenu/bg_hover"
-				backgroundLine	"gfx/guis/mainmenu/bg_line"
-				backgroundFocus	"gfx/guis/mainmenu/bg_focus"
 				forecolor	1,1,1,1
-				textscale	0.22
-				font	"fonts/lowpixel"
-
-				onMouseEnter {
-					set "bordercolor_w" "0.4" ;
-					set "cmd" "play main_menu_mouseover" ;	
-				}
-
-				onMouseExit {
-					set "bordercolor_w" "0.2" ;
-				}
-
-				onAction {
-					set "cmd" "play main_menu_selection" ;
-					set "cmd" "updateSaveGameInfo" ;
-				}
-
-				onEnter {
-					set "cmd" "play main_menu_selection" ;	
-					set "cmd" "loadGame" ;
-				}
-
+				text	"Brewery"
+				textscale	1
+				font	"fonts/marine"
 			}
-			windowDef load_mapshot
+			windowDef crafting
 			{
-				rect	25,78,183,137
+				rect	0,0,640,479
 				visible	1
-				background	"gui::loadgame_shot"
-				matcolor	1,1,1,1
-				bordersize	1
-				bordercolor	0.254,0.274,0.141,1
-				backcolor	0,0,0,0.6
+				windowDef bones_text
+				{
+					rect	240,202,160,36
+					visible	1
+					forecolor	1,1,1,1
+					text	"Bones Tincture"
+					textscale	0.3
+					font	"fonts/marine"
+					bordersize	3
+					bordercolor	1,1,1,1
+					windowDef b_bone
+					{
+						rect	0,0,160,36
+						visible	1
+
+						onActionRelease {
+							consoleCMD "craftBone" ;
+							set "cmd" "play main_menu_selection" ;
+						}
+
+					}
+				}
+				windowDef blood_text
+				{
+					rect	240,249,160,36
+					visible	1
+					forecolor	1,1,1,1
+					text	"Blood Tincture"
+					textscale	0.3
+					font	"fonts/marine"
+					bordersize	4
+					bordercolor	1,1,1,1
+					windowDef b_blood
+					{
+						rect	-1,0,160,36
+						visible	1
+
+						onActionRelease {
+							consoleCMD "craftBlood" ;
+							set "cmd" "play main_menu_selection" ;
+						}
+
+					}
+				}
+				windowDef nerves_text
+				{
+					rect	240,299,160,36
+					visible	1
+					forecolor	1,1,1,1
+					text	"Nerves Tincture"
+					textscale	0.3
+					font	"fonts/marine"
+					bordersize	4
+					bordercolor	1,1,1,1
+					windowDef b_nerves
+					{
+						rect	0,0,160,36
+						visible	1
+
+						onActionRelease {
+							consoleCMD "craftNerves" ;
+							set "cmd" "play main_menu_selection" ;
+						}
+
+					}
+				}
 			}
-			windowDef load_mapshotbtm
+			windowDef brew_text
 			{
-				rect	26,177,181,37
-				visible	0
-				backcolor	0,0,0,0.8
-			}
-			windowDef load_mapshot_date
-			{
-				rect	37,215,165,16
+				rect	259,138,123,45
 				visible	1
-				forecolor	1,1,1,0.8
-				text	"gui::saveGameDate"
-				textscale	0.25
-				font	"fonts/lowpixel"
-				textstyle	1
-			}
-			windowDef load_mapshot_time
-			{
-				rect	37,230,165,16
-				visible	1
-				forecolor	1,1,1,0.8
-				text	"gui::saveGameTime"
-				textscale	0.25
-				font	"fonts/lowpixel"
-				textstyle	1
-			}
-			windowDef load_name
-			{
-				rect	226,67,84,13
-				visible	0
-				forecolor	1,1,1,0.4
-				text	"#str_200242"
-				textscale	.2
-				font	"fonts/lowpixel"
-			}
-			windowDef load_date
-			{
-				rect	413,67,84,13
-				visible	0
-				forecolor	1,1,1,0.4
-				text	"#str_200243"
-				textscale	.2
-				font	"fonts/lowpixel"
-			}
-			windowDef load_time
-			{
-				rect	505,67,84,13
-				visible	0
-				forecolor	1,1,1,0.4
-				text	"#str_200244"
-				textscale	.2
-				font	"fonts/lowpixel"
+				forecolor	1,1,1,1
+				text	"Brew"
+				textscale	0.8
+				font	"fonts/marine"
 			}
 			windowDef pop_p_loaddel
 			{
@@ -20552,83 +20438,6 @@ windowDef Desktop
 				set "desktop::dest" "0" ;
 				
 				set "cmd" "play main_menu_selection" ;
-			}
-
-		}
-		windowDef load_b_loadgame
-		{
-			rect	24,269,192,25
-			visible	0
-
-			onMouseEnter {
-				if ("desktop::active" == 0) {
-					stoptransitions "load_b_loadgame" ;
-					
-					set "load_b1::matcolor_w" "1" ;
-					transition "load_t_b1::forecolor" "$desktop::white_8" "$desktop::orange" "0" ;
-					transition "load_b1_corner::matcolor" "$desktop::corner" "$desktop::orange" "0" ;  
-					
-					set "load_t_b1::textscale" "0.32" ; 
-					
-					set "cmd" "play main_menu_mouseover" ;	
-				}
-			}
-
-			onMouseExit {
-				if ("desktop::active" == 0) {
-					transition "load_b1::matcolor_w" "1" "0.4" "300" ;
-					transition "load_t_b1::forecolor"  "$desktop::orange" "$desktop::white_8" "300" ; 
-					transition "load_b1_corner::matcolor" "$desktop::orange" "$desktop::corner" "300" ; 
-					
-					transition "load_t_b1::textscale" "0.32" "0.31" "300" ;
-				}
-			}
-
-			onAction {
-				set "cmd" "play main_menu_selection loadGame" ;
-			}
-
-		}
-		windowDef load_b_delete
-		{
-			rect	24,305,192,25
-			visible	0
-
-			onMouseEnter {
-				if ("desktop::active" == 0) {
-					stoptransitions "load_b_delete" ;
-					
-					set "load_b2::matcolor_w" "1" ;
-					transition "load_t_b2::forecolor" "$desktop::white_8" "$desktop::orange" "0" ; 
-					transition "load_b2_corner::matcolor" "$desktop::corner" "$desktop::orange" "0" ;
-					
-					set "load_t_b2::textscale" "0.32" ; 
-					
-					set "cmd" "play main_menu_mouseover" ;	
-				}
-			}
-
-			onMouseExit {
-				if ("desktop::active" == 0) {
-					transition "load_b2::matcolor_w" "1" "0.4" "300" ;
-					transition "load_t_b2::forecolor"  "$desktop::orange" "$desktop::white_8" "300" ; 
-					transition "load_b2_corner::matcolor" "$desktop::orange" "$desktop::corner" "300" ; 
-					
-					transition "load_t_b2::textscale" "0.32" "0.31" "300" ;
-				}
-			}
-
-			onAction {
-				if ("gui::loadgame_sel_0" >= 0) {
-					if ("gui::loadgame_listdef_count" > 0) {
-						namedevent "p_anims::popReset0" ;
-						resettime "anim_pop_loaddelIn" "0" ;
-						set "desktop::active" "1" ;
-						set "desktop::dest" "28" ;
-						
-						set "cmd" "play main_menu_selection" ;
-					}
-				}
 			}
 
 		}
