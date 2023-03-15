@@ -3111,7 +3111,7 @@ void Cmd_Craft_Blood(const idCmdArgs& args) {
 
 // debug commands
 void Cmd_Rand_i(const idCmdArgs& args) {
-	gameLocal.Printf("Random number: %d", (gameLocal.random.RandomInt())%3);
+	gameLocal.Printf("Random number: %d\n", (gameLocal.random.RandomInt(3)));
 }
 
 void Cmd_PlayerDisease_i(const idCmdArgs& args) {
@@ -3211,22 +3211,21 @@ void PickSymptom(int baseSymptom, int reveal1, int reveal2, int reveal3) {
 	if (!player)return;
 
 	int randomSymptom = -1;
-	bool randomPicked = false;
 
 	if (player->symptom[baseSymptom] && player->symptom[reveal1] && player->symptom[reveal2] && player->symptom[reveal3]) {
 		gameLocal.Printf("All symptoms revealed\n");
 		return;
 	}
 
-	while (!randomPicked) {
-		randomSymptom = gameLocal.random.RandomInt(3);
+	while (true) {
+		randomSymptom = gameLocal.random.RandomInt(4);
 		if (randomSymptom == 0) {
 			if (player->symptom[baseSymptom]) {
 				continue;
 			}
 			else {
 				player->symptom[baseSymptom] = true;
-				randomPicked = true;
+				return;
 			}
 		}
 		else if (randomSymptom == 1) {
@@ -3235,7 +3234,7 @@ void PickSymptom(int baseSymptom, int reveal1, int reveal2, int reveal3) {
 			}
 			else {
 				player->symptom[reveal1] = true;
-				randomPicked = true;
+				return;
 			}
 		}
 		else if (randomSymptom == 2) {
@@ -3244,7 +3243,7 @@ void PickSymptom(int baseSymptom, int reveal1, int reveal2, int reveal3) {
 			}
 			else {
 				player->symptom[reveal2] = true;
-				randomPicked = true;
+				return;
 			}
 		}
 		else if (randomSymptom == 3) {
@@ -3253,7 +3252,7 @@ void PickSymptom(int baseSymptom, int reveal1, int reveal2, int reveal3) {
 			}
 			else {
 				player->symptom[reveal3] = true;
-				randomPicked = true;
+				return;
 			}
 		}
 	}

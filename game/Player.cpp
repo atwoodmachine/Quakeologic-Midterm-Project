@@ -2080,7 +2080,7 @@ void idPlayer::Spawn( void ) {
 
 // disease system
 	gameLocal.random.SetSeed(time(NULL));
-	diseaseType = gameLocal.random.RandomInt(2); // 0 is blood, 1 is bones, 2 is nerves
+	diseaseType = gameLocal.random.RandomInt(3); // 0 is blood, 1 is bones, 2 is nerves
 
 	for (int i = 0; i < 7; i++) {
 		symptom[i] = false;
