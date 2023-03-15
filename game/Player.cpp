@@ -2080,16 +2080,11 @@ void idPlayer::Spawn( void ) {
 
 // disease system
 	gameLocal.random.SetSeed(time(NULL));
-	rand = gameLocal.random.RandomInt(2);
-	diseaseType = rand; // 0 is blood, 1 is bones, 2 is nerves
+	diseaseType = gameLocal.random.RandomInt(2); // 0 is blood, 1 is bones, 2 is nerves
 
-	sympt1 = false;
-	sympt2 = false;
-	sympt3 = false;
-	sympt4 = false;
-	sympt5 = false;
-	sympt6 = false;
-	sympt7 = false;
+	for (int i = 0; i < 7; i++) {
+		symptom[i] = false;
+	}
 }
 
 /*
@@ -3460,7 +3455,7 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	if (temp != inventory.immunity) {
 		_hud->SetStateInt("player_immunity", inventory.immunity);
 	}
-	//ITS CLAPPED, BUT IT WORKS
+	//INVENTORY HUD
 	temp = _hud->State().GetInt("red_twyre");
 	if (temp != inventory.redTwyre) {
 		_hud->SetStateInt("red_twyre", inventory.redTwyre);
@@ -3489,7 +3484,8 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	if (temp != inventory.nervesTincture) {
 		_hud->SetStateInt("nerves_tinct", inventory.nervesTincture);
 	}
-
+	// diagnosis hud
+	
 
 	// Boss bar
 	if ( _hud->State().GetInt ( "boss_health", "-1" ) != (bossEnemy ? bossEnemy->health : -1) ) {

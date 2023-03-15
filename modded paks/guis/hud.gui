@@ -2449,6 +2449,7 @@ windowDef Desktop
 		text	"Your inventory"
 		textscale	0.5
 		font	"fonts/marine"
+		textstyle	2
 	}
 	windowDef red_twyre_text
 	{
@@ -2458,6 +2459,7 @@ windowDef Desktop
 		text	"Red Twyre:"
 		textscale	0.2
 		font	"fonts/marine"
+		textstyle	2
 	}
 	windowDef num_red
 	{
@@ -2466,6 +2468,7 @@ windowDef Desktop
 		forecolor	1,1,1,1
 		text	"gui::red_twyre"
 		textscale	0.2
+		textstyle	2
 	}
 	windowDef green_twyre_text
 	{
@@ -2475,6 +2478,7 @@ windowDef Desktop
 		text	"Green Twyre:"
 		textscale	0.2
 		font	"fonts/marine"
+		textstyle	2
 	}
 	windowDef num_green
 	{
@@ -2483,6 +2487,7 @@ windowDef Desktop
 		forecolor	1,1,1,1
 		text	"gui::green_twyre"
 		textscale	0.2
+		textstyle	2
 	}
 	windowDef white_twyre_text
 	{
@@ -2492,6 +2497,7 @@ windowDef Desktop
 		text	"White Twyre:"
 		textscale	0.2
 		font	"fonts/marine"
+		textstyle	2
 	}
 	windowDef num_white
 	{
@@ -2500,6 +2506,7 @@ windowDef Desktop
 		forecolor	1,1,1,1
 		text	"gui::white_twyre"
 		textscale	0.2
+		textstyle	2
 	}
 	windowDef bone_tinct_text
 	{
@@ -2509,6 +2516,7 @@ windowDef Desktop
 		text	"Bone Tinctures:"
 		textscale	0.2
 		font	"fonts/marine"
+		textstyle	2
 	}
 	windowDef num_bone
 	{
@@ -2517,6 +2525,7 @@ windowDef Desktop
 		forecolor	1,1,1,1
 		text	"gui::bone_tinct"
 		textscale	0.2
+		textstyle	2
 	}
 	windowDef blood_tinct_text
 	{
@@ -2526,6 +2535,7 @@ windowDef Desktop
 		text	"Blood Tinctures:"
 		textscale	0.2
 		font	"fonts/marine"
+		textstyle	2
 	}
 	windowDef num_blood
 	{
@@ -2534,6 +2544,7 @@ windowDef Desktop
 		forecolor	1,1,1,1
 		text	"gui::blood_tinct"
 		textscale	0.2
+		textstyle	2
 	}
 	windowDef water_text
 	{
@@ -2543,6 +2554,7 @@ windowDef Desktop
 		text	"Water:"
 		textscale	0.2
 		font	"fonts/marine"
+		textstyle	2
 	}
 	windowDef num_water
 	{
@@ -2551,6 +2563,7 @@ windowDef Desktop
 		forecolor	1,1,1,1
 		text	"gui::water"
 		textscale	0.2
+		textstyle	2
 	}
 	windowDef nerves_tinct_text
 	{
@@ -2560,6 +2573,7 @@ windowDef Desktop
 		text	"Nerves Tinctures:"
 		textscale	0.2
 		font	"fonts/marine"
+		textstyle	2
 	}
 	windowDef num_nerves
 	{
@@ -2568,5 +2582,6 @@ windowDef Desktop
 		forecolor	1,1,1,1
 		text	"gui::nerves_tinct"
 		textscale	0.2
+		textstyle	2
 	}
 }

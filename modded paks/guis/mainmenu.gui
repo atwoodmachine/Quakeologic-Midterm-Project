@@ -1770,7 +1770,7 @@ windowDef Desktop
 				rect	13,126,600,277
 				visible	1
 				forecolor	1,1,1,1
-				text	"Welcome to Quakeologic, a surival mod for Quake 4. The player has several new meters to keep track of: exhaustion, thirst, and hunger, which gradually increase over time. If these values reach 100, the players health will begin to decrease. If multiple stats are at their maximum, health will decrease even faster."
+				text	"Welcome to Quakeologic, a surival mod for Quake 4. The player has several new meters to keep track of: exhaustion, thirst, and hunger, which gradually increase over time. If these values reach 100, the players health will begin to decrease. If multiple stats are at their maximum, health will decrease even faster. The player has the ability to craft items through the Menkhu Craft screen in the pause menu. Simply click the buttons to craft the items. The crafting recipes are as follows: 1 water + 1 white twyre + 1 red twyre = 1 blood tincture, 1 water + 1 white twyre + 1 green twyre = 1 bone tincture, 1 water + 1 red twyre + 1 green twyre = 1 nerves tincture. These tinctures are used to diagnose illness. By using a specific tincture, you reveal symptoms that reside on the respective layer."
 				textscale	0.2
 				font	"fonts/marine"
 			}

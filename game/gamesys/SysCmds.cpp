@@ -3063,7 +3063,7 @@ void Cmd_Crafting_i(const idCmdArgs& args) {
 	gameLocal.Printf("You have %d bone tinctures\n", player->inventory.boneTincture);
 }
 
-// crafting commands. it is clapped but it works* *might work
+// crafting commands. 
 // resippy reference: white + green make bone, white + red make blood, red + green make nerves
 
 void Cmd_Craft_Bone(const idCmdArgs& args) {
@@ -3109,6 +3109,7 @@ void Cmd_Craft_Blood(const idCmdArgs& args) {
 	player->inventory.bloodTincture += 1;
 }
 
+// debug commands
 void Cmd_Rand_i(const idCmdArgs& args) {
 	gameLocal.Printf("Random number: %d", (gameLocal.random.RandomInt())%3);
 }
@@ -3136,13 +3137,18 @@ void Cmd_PlayerSymptoms_b(const idCmdArgs& args) {
 	player = gameLocal.GetLocalPlayer();
 	if (!player)return;
 
-	gameLocal.Printf("Symptom 1: %d\n", player->sympt1);
-	gameLocal.Printf("Symptom 2: %d\n", player->sympt2);
-	gameLocal.Printf("Symptom 3: %d\n", player->sympt3);
-	gameLocal.Printf("Symptom 4: %d\n", player->sympt4);
-	gameLocal.Printf("Symptom 5: %d\n", player->sympt5);
-	gameLocal.Printf("Symptom 6: %d\n", player->sympt6);
-	gameLocal.Printf("Symptom 7: %d\n", player->sympt7);
+	for (int i = 0; i < 7; i++) {
+		gameLocal.Printf("Symptom %d: %d\n", i, player->symptom[i]);
+	}
+}
+
+void Cmd_ClearSymptoms(const idCmdArgs& args) {
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+	for (int i = 0; i < 6; i++) {
+		player->symptom[i] = false;
+	}
 }
 
 void Cmd_SetDisease_0(const idCmdArgs& args) {
@@ -3165,26 +3171,117 @@ void Cmd_SetDisease_2(const idCmdArgs& args) {
 	player->diseaseType = 2;
 }
 
+
+// helper functions
+void PickSymptom(int reveal1, int reveal2) {
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+
+	if (player->symptom[reveal1] && player->symptom[reveal2]) {
+		return;
+	}
+
+	// if only one is still unrevealed
+	if (player->symptom[reveal1] && !player->symptom[reveal2]) {
+		player->symptom[reveal2] = true;
+		return;
+	}
+	else if (!player->symptom[reveal1] && player->symptom[reveal2]) {
+		player->symptom[reveal1] = true;
+		return;
+	}
+
+	// pick a random one
+	int random = gameLocal.random.RandomInt(1);
+	if (random == 0) {
+		player->symptom[reveal1] = true;
+		return;
+	}
+	else {
+		player->symptom[reveal2] = true;
+		return;
+	}
+
+}
+
+void PickSymptom(int baseSymptom, int reveal1, int reveal2, int reveal3) {
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+
+	int randomSymptom = -1;
+	bool randomPicked = false;
+
+	while (!randomPicked) {
+		randomSymptom = gameLocal.random.RandomInt(3);
+		if (randomSymptom == 0) {
+			if (player->symptom[baseSymptom]) {
+				continue;
+			}
+			else {
+				player->symptom[baseSymptom] = true;
+				randomPicked = true;
+			}
+		}
+		else if (randomSymptom == 1) {
+			if (player->symptom[reveal1]) {
+				continue;
+			}
+			else {
+				player->symptom[reveal1] = true;
+				randomPicked = true;
+			}
+		}
+		else if (randomSymptom == 2) {
+			if (player->symptom[reveal2]) {
+				continue;
+			}
+			else {
+				player->symptom[reveal2] = true;
+				randomPicked = true;
+			}
+		}
+		else if (randomSymptom == 3) {
+			if (player->symptom[reveal3]) {
+				continue;
+			}
+			else {
+				player->symptom[reveal3] = true;
+				randomPicked = true;
+			}
+		}
+	}
+
+}
+
+// tincture functions
 void Cmd_UseBlood(const idCmdArgs& args) {
 	idPlayer* player;
 	player = gameLocal.GetLocalPlayer();
 	if (!player)return;
 
 	// remember this is "guess blood"
-	switch (player->diseaseType) {
-	case 0: //layer blood
-		gameLocal.Printf("Disease on layer blood");
-		// if you guess blood and it is blood, reveal symptoms 4, 5, 6, 7
-
-		break;
-	case 1: //layer bones
-		gameLocal.Printf("Disease on layer bones");
-		// if you guess blood and it is bones, symptoms 4, 5
-		break;
-	case 2: //layer nerves
-		gameLocal.Printf("Disease on layer nerves");
-		// if you guess blood and it is nerves, symptoms 5, 6
-		break;
+	if (player->inventory.bloodTincture > 0) {
+		switch (player->diseaseType) {
+		case 0: //layer blood
+			// if you guess blood and it is blood, reveal symptoms 3, 4, 5, 6
+			PickSymptom(6, 3, 4, 5);
+			break;
+		case 1: //layer bones
+			// if you guess blood and it is bones, symptoms 3, 4
+			PickSymptom(3, 4);
+			break;
+		case 2: //layer nerves
+			// if you guess blood and it is nerves, symptoms 4, 5
+			PickSymptom(4, 5);
+			break;
+		}
+		player->inventory.boneTincture -= 1;
+	}
+	else {
+		gameLocal.Printf("Not enough tinctures");
+		return;
 	}
 }
 
@@ -3194,21 +3291,27 @@ void Cmd_UseBone(const idCmdArgs& args) {
 	if (!player)return;
 
 	// remember this is "guess bone"
-	switch (player->diseaseType) {
-	case 0: //layer blood
-		gameLocal.Printf("Disease on layer blood");
-		// if you guess bones and it is blood, symptoms 4, 5
-		break;
-	case 1: //layer bones
-		gameLocal.Printf("Disease on layer bones");
-		// if you gues bones and it is bones, symptoms 1, 2, 4, 5
-		break;
-	case 2: //layer nerves
-		gameLocal.Printf("Disease on layer nerves");
-		// if you guess bones and it is nerves, symptoms 2, 5
-		break;
+	if (player->inventory.boneTincture > 0) {
+		switch (player->diseaseType) {
+		case 0: //layer blood
+			// if you guess bones and it is blood, symptoms 3, 4
+			PickSymptom(3, 4);
+			break;
+		case 1: //layer bones
+			// if you gues bones and it is bones, symptoms 0, 1, 3, 4
+			PickSymptom(0, 1, 3, 4);
+			break;
+		case 2: //layer nerves
+			// if you guess bones and it is nerves, symptoms 1, 4
+			PickSymptom(1, 4);
+			break;
+		}
+		player->inventory.boneTincture -= 1;
 	}
-
+	else {
+		gameLocal.Printf("Not enough tinctures");
+		return;
+	}
 
 }
 
@@ -3218,27 +3321,29 @@ void Cmd_UseNerves(const idCmdArgs& args) {
 	if (!player)return;
 
 	// remember this is "guess nerves"
-	switch (player->diseaseType) {
-	case 0: //layer blood
-		gameLocal.Printf("Disease on layer blood");
-		// if you guess nerves and it is blood, symptoms 5, 6
-		break;
-	case 1: //layer bones
-		gameLocal.Printf("Disease on layer bones");
-		// if you guess nerves and it is bones, symptoms 4, 5
-		break;
-	case 2: //layer nerves
-		gameLocal.Printf("Disease on layer nerves");
-		// if you guess nerves and it is nerves, symptoms 5, 6
-		break;
+	if (player->inventory.nervesTincture > 0) {
+		switch (player->diseaseType) {
+		case 0: //layer blood
+			// if you guess nerves and it is blood, symptoms 4, 5
+			PickSymptom(4, 5);
+			break;
+		case 1: //layer bones
+			// if you guess nerves and it is bones, symptoms 1, 4
+			PickSymptom(1, 4);
+			break;
+		case 2: //layer nerves
+			// if you guess nerves and it is nerves, symptoms 2, 1, 4, 5
+			PickSymptom(2, 1, 4, 5);
+			break;
+		}
+		player->inventory.nervesTincture -= 1;
 	}
-
-
+	else {
+		gameLocal.Printf("Not enough tinctures");
+		return;
+	}
 }
 
-void Cmd_UIExists(const idCmdArgs& args) {
-	uiManager->ListGuis();
-}
 
 /*
 =================
@@ -3434,23 +3539,25 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand( "buyMenu",				Cmd_ToggleBuyMenu_f,		CMD_FL_GAME,				"Toggle buy menu (if in a buy zone and the game type supports it)" );
 	cmdSystem->AddCommand( "buy",					Cmd_BuyItem_f,				CMD_FL_GAME,				"Buy an item (if in a buy zone and the game type supports it)" );
 // RITUAL END
+
 // SNEPPO debug
 	cmdSystem->AddCommand("showHunger", Cmd_Hunger_i, CMD_FL_GAME, "Show player hunger value");
 	cmdSystem->AddCommand("craftingSystem", Cmd_Crafting_i, CMD_FL_GAME, "Show player crafting system inventory");
+	cmdSystem->AddCommand("random", Cmd_Rand_i, CMD_FL_GAME, "gimme a random number");
+	cmdSystem->AddCommand("disease", Cmd_PlayerDisease_i, CMD_FL_GAME, "Displays player's disease");
+	cmdSystem->AddCommand("symptoms", Cmd_PlayerSymptoms_b, CMD_FL_GAME, "Displays player's symptom diagnoses");
+	cmdSystem->AddCommand("setDisease0", Cmd_SetDisease_0, CMD_FL_GAME, "sets disease to 0");
+	cmdSystem->AddCommand("setDisease1", Cmd_SetDisease_1, CMD_FL_GAME, "sets disease to 1");
+	cmdSystem->AddCommand("setDisease2", Cmd_SetDisease_2, CMD_FL_GAME, "sets disease to 2");
+	cmdSystem->AddCommand("clearSymptoms", Cmd_ClearSymptoms, CMD_FL_GAME, "Clears uncovered symptoms");
+	
 // sneppo functional
 	cmdSystem->AddCommand("craftBone", Cmd_Craft_Bone, CMD_FL_GAME, "Make a bone tincture");
 	cmdSystem->AddCommand("craftNerves", Cmd_Craft_Nerves, CMD_FL_GAME, "Make a nerves tincture");
 	cmdSystem->AddCommand("craftBlood", Cmd_Craft_Blood, CMD_FL_GAME, "Make a blood tincture");
-	cmdSystem->AddCommand("isLooking", Cmd_IsTalking_b, CMD_FL_GAME, "Am I looking at an NPC");
-	cmdSystem->AddCommand("random", Cmd_Rand_i, CMD_FL_GAME, "gimme a random number");
-	cmdSystem->AddCommand("disease", Cmd_PlayerDisease_i, CMD_FL_GAME, "Displays player's disease");
-	cmdSystem->AddCommand("symptoms", Cmd_PlayerSymptoms_b, CMD_FL_GAME, "Displays player's symptom diagnoses");
 	cmdSystem->AddCommand("bloodTinct", Cmd_UseBlood, CMD_FL_GAME, "Uses blood tincture and possibly reveals a symptom");
-	cmdSystem->AddCommand("setDisease0", Cmd_SetDisease_0, CMD_FL_GAME, "sets disease to 0");
-	cmdSystem->AddCommand("setDisease1", Cmd_SetDisease_1, CMD_FL_GAME, "sets disease to 1");
-	cmdSystem->AddCommand("setDisease2", Cmd_SetDisease_2, CMD_FL_GAME, "sets disease to 2");
-	
-	cmdSystem->AddCommand("uiExists", Cmd_UIExists, CMD_FL_GAME, "Lists UIs");
+	cmdSystem->AddCommand("bonesTinct", Cmd_UseBone, CMD_FL_GAME, "Uses bone tincture and possibly reveals a symptom");
+	cmdSystem->AddCommand("nervesTinct", Cmd_UseNerves, CMD_FL_GAME, "Uses nerves tincture and possibly reveals a symptom");
 }
 
 /*

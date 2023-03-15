@@ -457,16 +457,11 @@ public:
 
 	bool isLookingAtNPC;
 
-// more bullshit
+// disease system
 	int diseaseType;
-	bool sympt1;
-	bool sympt2;
-	bool sympt3;
-	bool sympt4;
-	bool sympt5;
-	bool sympt6;
-	bool sympt7;
-	int rand;
+	bool symptom[7];
+
+
 public:
 	CLASS_PROTOTYPE( idPlayer );
 
