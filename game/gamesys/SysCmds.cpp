@@ -3213,9 +3213,9 @@ void PickSymptom(int baseSymptom, int reveal1, int reveal2, int reveal3) {
 	int randomSymptom = -1;
 	bool randomPicked = false;
 
-	// hopefully prevents crashes
 	if (player->symptom[baseSymptom] && player->symptom[reveal1] && player->symptom[reveal2] && player->symptom[reveal3]) {
 		gameLocal.Printf("All symptoms revealed\n");
+		return;
 	}
 
 	while (!randomPicked) {
