@@ -3485,7 +3485,41 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 		_hud->SetStateInt("nerves_tinct", inventory.nervesTincture);
 	}
 	// diagnosis hud
-	
+	bool tempb;
+	tempb = _hud->State().GetBool("sympt0");
+	if (tempb != symptom[0]) {
+		_hud->SetStateBool("sympt0", symptom[0]);
+	}
+
+	tempb = _hud->State().GetBool("sympt1");
+	if (tempb != symptom[1]) {
+		_hud->SetStateBool("sympt1", symptom[1]);
+	}
+
+	tempb = _hud->State().GetBool("sympt2");
+	if (tempb != symptom[2]) {
+		_hud->SetStateBool("sympt2", symptom[2]);
+	}
+
+	tempb = _hud->State().GetBool("sympt3");
+	if (tempb != symptom[3]) {
+		_hud->SetStateBool("sympt3", symptom[3]);
+	}
+
+	tempb = _hud->State().GetBool("sympt4");
+	if (tempb != symptom[4]) {
+		_hud->SetStateBool("sympt4", symptom[4]);
+	}
+
+	tempb = _hud->State().GetBool("sympt5");
+	if (tempb != symptom[5]) {
+		_hud->SetStateBool("sympt5", symptom[5]);
+	}
+
+	tempb = _hud->State().GetBool("sympt6");
+	if (tempb != symptom[6]) {
+		_hud->SetStateBool("sympt6", symptom[6]);
+	}
 
 	// Boss bar
 	if ( _hud->State().GetInt ( "boss_health", "-1" ) != (bossEnemy ? bossEnemy->health : -1) ) {
