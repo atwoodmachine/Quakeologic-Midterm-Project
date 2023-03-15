@@ -55,14 +55,7 @@ const int	ASYNC_PLAYER_INV_AMMO_BITS = idMath::BitsForInteger( 999 );	// 9 bits 
 const int	ASYNC_PLAYER_INV_CLIP_BITS = -7;							// -7 bits to cover the range [-1, 60]
 const int	ASYNC_PLAYER_INV_WPMOD_BITS = 3;							// 3 bits (max of 3 mods per gun)
 // NOTE: protocol 69 used 6 bits, but that's only used for client -> server traffic, so doesn't affect backwards protocol replay compat
-const int	IMPULSE_NUMBER_OF_BITS		= 8;							// allows for 2<<X impulses
-
-// QUAKEOLOGIC STATS
-const int MAX_EXHAUSTION = 100;
-const int MAX_HUNGER = 100;
-const int MAX_THIRST = 100;
-const int MAX_IMMUNITY = 100; // recall high immunity is good 
-
+const int	IMPULSE_NUMBER_OF_BITS		= 8;							// allows for 2<<X impulses 
 
 #define MAX_CONCURRENT_VOICES	3
 
@@ -78,6 +71,12 @@ typedef struct
 } nextWeaponCombo_t;
 #endif
 // RAVEN END
+
+// QUAKEOLOGIC STATS
+const int MAX_EXHAUSTION = 100;
+const int MAX_HUNGER = 100;
+const int MAX_THIRST = 100;
+const int MAX_INFECTION = 100; 
 
 typedef enum {
 	FOCUS_NONE,
@@ -219,19 +218,26 @@ public:
 	int hunger;
 	int exhaustion;
 	int thirst;
-	int immunity;
-	bool infected;
+	int infection;
 
 // crafting ingredients
 	int redTwyre;
 	int whiteTwyre;
 	int greenTwyre;
 	int water;
+	int swevery;
 
 // crafted items
 	int boneTincture;
 	int bloodTincture;
 	int nervesTincture;
+	int neomycinium;
+	int ferromycinium;
+	int monomycinium;
+
+// inventory items
+	int food;
+	int coffeeBeans;
 	
 
  	// multiplayer

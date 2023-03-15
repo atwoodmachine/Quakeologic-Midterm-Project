@@ -2057,11 +2057,10 @@ void idPlayer::Spawn( void ) {
 	itemCosts = static_cast< const idDeclEntityDef * >( declManager->FindType( DECL_ENTITYDEF, "ItemCostConstants", false ) );
 
 // set survival stats
-	inventory.hunger = 50; // gui done
-	inventory.thirst = 25; // gui done
-	inventory.immunity = 75; //gui done
-	inventory.exhaustion = 55; //gui done
-	inventory.infected = false;
+	inventory.hunger = 50; 
+	inventory.thirst = 25; 
+	inventory.infection = 55; 
+	inventory.exhaustion = 75; 
 
 // survival pulse set
 	nextSurvivalTick = 0;
@@ -2073,10 +2072,17 @@ void idPlayer::Spawn( void ) {
 	inventory.whiteTwyre = 10;
 	inventory.greenTwyre = 10;
 	inventory.water = 10;
+	inventory.swevery = 1;
 // starting crafted items
 	inventory.bloodTincture = 0;
 	inventory.boneTincture = 0;
 	inventory.nervesTincture = 0;
+	inventory.ferromycinium = 1;
+	inventory.neomycinium = 2;
+	inventory.monomycinium = 3;
+// starting items
+	inventory.coffeeBeans = 4;
+	inventory.food = 3;
 
 // disease system
 	gameLocal.random.SetSeed(time(NULL));
@@ -3451,11 +3457,11 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	if (temp != inventory.hunger) {
 		_hud->SetStateInt("player_exhaustion", inventory.exhaustion);
 	}
-	temp = _hud->State().GetInt("player_immunity");
-	if (temp != inventory.immunity) {
-		_hud->SetStateInt("player_immunity", inventory.immunity);
+	temp = _hud->State().GetInt("player_infection");
+	if (temp != inventory.infection) {
+		_hud->SetStateInt("player_infection", inventory.infection);
 	}
-	//INVENTORY HUD
+	// INVENTORY HUD
 	temp = _hud->State().GetInt("red_twyre");
 	if (temp != inventory.redTwyre) {
 		_hud->SetStateInt("red_twyre", inventory.redTwyre);
@@ -3467,6 +3473,10 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	temp = _hud->State().GetInt("white_twyre");
 	if (temp != inventory.whiteTwyre) {
 		_hud->SetStateInt("white_twyre", inventory.whiteTwyre);
+	}
+	temp = _hud->State().GetInt("swevery");
+	if (temp != inventory.swevery) {
+		_hud->SetStateInt("swevery", inventory.swevery);
 	}
 	temp = _hud->State().GetInt("water");
 	if (temp != inventory.greenTwyre) {
@@ -3483,6 +3493,28 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	temp = _hud->State().GetInt("nerves_tinct");
 	if (temp != inventory.nervesTincture) {
 		_hud->SetStateInt("nerves_tinct", inventory.nervesTincture);
+	}
+
+	temp = _hud->State().GetInt("ferromycinium");
+	if (temp != inventory.ferromycinium) {
+		_hud->SetStateInt("ferromycinium", inventory.ferromycinium);
+	}
+	temp = _hud->State().GetInt("neomycinium");
+	if (temp != inventory.neomycinium) {
+		_hud->SetStateInt("neomycinium", inventory.neomycinium);
+	}
+	temp = _hud->State().GetInt("monomycinium");
+	if (temp != inventory.monomycinium) {
+		_hud->SetStateInt("monomycinium", inventory.monomycinium);
+	}
+
+	temp = _hud->State().GetInt("coffee_beans");
+	if (temp != inventory.coffeeBeans) {
+		_hud->SetStateInt("coffee_beans", inventory.coffeeBeans);
+	}
+	temp = _hud->State().GetInt("food");
+	if (temp != inventory.food) {
+		_hud->SetStateInt("food", inventory.food);
 	}
 	// diagnosis hud
 	bool tempb;
@@ -9779,6 +9811,9 @@ void idPlayer::Think( void ) {
 		if (inventory.thirst < MAX_THIRST) {
 			inventory.thirst += 1;
 		}
+		if (inventory.infection < MAX_INFECTION) {
+			inventory.infection += 1;
+		}
 		nextSurvivalTick = gameLocal.time + 2000; // survival tick rate
 	}
 
@@ -9797,8 +9832,8 @@ void idPlayer::Think( void ) {
 			numDebuffs += 1;
 
 		}
-		if (inventory.infected) {
-			numDebuffs += 5;
+		if (inventory.infection == MAX_INFECTION) {
+			numDebuffs += 500;
 		}
 		//damage player
 		health -= numDebuffs;

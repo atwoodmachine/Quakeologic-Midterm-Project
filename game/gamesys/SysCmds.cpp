@@ -3348,6 +3348,81 @@ void Cmd_UseNerves(const idCmdArgs& args) {
 	}
 }
 
+// antibiotic functions
+
+void Cmd_UseFerromycinium(const idCmdArgs& args) { // blood
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+
+	if (player->inventory.ferromycinium > 0) {
+		if (player->diseaseType == 0) {
+			if (player->inventory.infection > 25) {
+				player->inventory.infection -= 25;
+			}
+			else {
+				player->inventory.infection -= 0;
+			}
+		}
+		if (player->health > 25) {
+			player->health -= 25;
+		}
+		else {
+			player->health = 1;
+		}
+		player->inventory.ferromycinium -= 1;
+	}
+}
+
+void Cmd_UseNeomycinium(const idCmdArgs& args) { // bones
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+
+	if (player->inventory.neomycinium > 0) {
+		if (player->diseaseType == 1) {
+			if (player->inventory.infection > 25) {
+				player->inventory.infection -= 25;
+			}
+			else {
+				player->inventory.infection -= 0;
+			}
+		}
+		if(player->health > 25){
+			player->health -= 25;
+		}
+		else {
+			player->health = 1;
+		}
+		player->inventory.neomycinium -= 1;
+	}
+}
+void Cmd_UseMonomycinium(const idCmdArgs& args) { // nerves
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+
+	if (player->inventory.monomycinium > 0) {
+		if (player->diseaseType == 2) {
+			if (player->inventory.infection > 25) {
+				player->inventory.infection -= 25;
+			}
+			else {
+				player->inventory.infection -= 0;
+			}
+		}
+		if (player->health > 25) {
+			player->health -= 25;
+		}
+		else {
+			player->health = 1;
+		}
+		player->inventory.monomycinium -= 1;
+	}
+}
+
+// consumable functions
+
 /*
 =================
 idGameLocal::InitConsoleCommands
