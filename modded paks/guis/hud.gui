@@ -2584,4 +2584,168 @@ windowDef Desktop
 		textscale	0.2
 		textstyle	2
 	}
+	windowDef diagnosis
+	{
+		rect	187,117,275,250
+		visible	0
+		backcolor	1,0,0.501,1
+	}
+	windowDef line4
+	{
+		rect	170,243,196,9
+		visible	1
+		backcolor	1,1,1,1
+		rotate	120
+	}
+	windowDef symptom0
+	{
+		rect	212,142,25,25
+		visible	1
+		backcolor	1,1,1,1
+	}
+	windowDef symptom1
+	{
+		rect	312,142,25,24
+		visible	1
+		backcolor	1,1,1,1
+	}
+	windowDef line5
+	{
+		rect	284,243,196,9
+		visible	1
+		backcolor	1,1,1,1
+		rotate	60
+	}
+	windowDef symptom2
+	{
+		rect	412,142,25,24
+		visible	1
+		backcolor	1,1,1,1
+	}
+	windowDef line7
+	{
+		rect	269,234,49,10
+		visible	1
+		backcolor	1,1,1,1
+		rotate	30
+	}
+	windowDef symptom3
+	{
+		rect	253,237,25,24
+		visible	1
+		backcolor	1,1,1,1
+	}
+	windowDef line6
+	{
+		rect	328,233,50,10
+		visible	1
+		backcolor	1,1,1,1
+		rotate	150
+	}
+	windowDef symptom4
+	{
+		rect	312,210,25,24
+		visible	1
+		backcolor	1,1,1,1
+	}
+	windowDef symptom5
+	{
+		rect	370,237,25,24
+		visible	1
+		backcolor	1,1,1,1
+	}
+	windowDef symptom6
+	{
+		rect	312,314,25,24
+		visible	1
+		backcolor	1,1,1,1
+	}
+	windowDef line1
+	{
+		rect	237,151,75,10
+		visible	1
+		backcolor	1,1,1,1
+	}
+	windowDef line2
+	{
+		rect	337,150,75,9
+		visible	1
+		backcolor	1,1,1,1
+	}
+	windowDef line3
+	{
+		rect	320,166,10,44
+		visible	1
+		backcolor	1,1,1,1
+	}
+	windowDef symptom0r
+	{
+		rect	199,129,25,25
+		visible	1
+		forecolor	0,1,0.486,1
+		text	"gui::sympt0"
+		textscale	1
+		textstyle	2
+		font	"fonts/marine"
+	}
+	windowDef symptom1r
+	{
+		rect	300,130,25,24
+		visible	1
+		forecolor	0,1,0.501,1
+		text	"gui::sympt1"
+		textscale	1
+		textstyle	2
+		font	"fonts/marine"
+	}
+	windowDef symptom2r
+	{
+		rect	399,131,25,24
+		visible	1
+		forecolor	0,1,0.501,1
+		text	"gui::sympt2"
+		textscale	1
+		textstyle	2
+		font	"fonts/marine"
+	}
+	windowDef symptom3r
+	{
+		rect	249,222,25,24
+		visible	1
+		forecolor	0,1,0.501,1
+		text	"gui::sympt3"
+		textscale	1
+		textstyle	2
+		font	"fonts/marine"
+	}
+	windowDef symptom4r
+	{
+		rect	312,196,25,24
+		visible	1
+		forecolor	0,1,0.501,1
+		text	"gui::sympt4"
+		textscale	1
+		textstyle	2
+		font	"fonts/marine"
+	}
+	windowDef symptom5r
+	{
+		rect	370,220,25,24
+		visible	1
+		forecolor	0,1,0.501,1
+		text	"gui::sympt5"
+		textscale	1
+		textstyle	2
+		font	"fonts/marine"
+	}
+	windowDef symptom6r
+	{
+		rect	312,299,25,24
+		visible	1
+		forecolor	0,1,0.498,1
+		text	"gui::sympt6"
+		textscale	1
+		textstyle	2
+		font	"fonts/marine"
+	}
 }

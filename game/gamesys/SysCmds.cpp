@@ -3213,6 +3213,11 @@ void PickSymptom(int baseSymptom, int reveal1, int reveal2, int reveal3) {
 	int randomSymptom = -1;
 	bool randomPicked = false;
 
+	// hopefully prevents crashes
+	if (player->symptom[baseSymptom] && player->symptom[reveal1] && player->symptom[reveal2] && player->symptom[reveal3]) {
+		gameLocal.Printf("All symptoms revealed\n");
+	}
+
 	while (!randomPicked) {
 		randomSymptom = gameLocal.random.RandomInt(3);
 		if (randomSymptom == 0) {
@@ -3277,7 +3282,7 @@ void Cmd_UseBlood(const idCmdArgs& args) {
 			PickSymptom(4, 5);
 			break;
 		}
-		player->inventory.boneTincture -= 1;
+		player->inventory.bloodTincture -= 1;
 	}
 	else {
 		gameLocal.Printf("Not enough tinctures");
@@ -3343,7 +3348,6 @@ void Cmd_UseNerves(const idCmdArgs& args) {
 		return;
 	}
 }
-
 
 /*
 =================
