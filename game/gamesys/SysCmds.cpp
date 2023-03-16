@@ -3348,8 +3348,53 @@ void Cmd_UseNerves(const idCmdArgs& args) {
 	}
 }
 
-// antibiotic functions
+// antibiotic craft functions
+void Cmd_CraftFerromycinium(const idCmdArgs& args) {
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
 
+	if (player->inventory.swevery <= 0 || player->inventory.redTwyre <= 0) {
+		gameLocal.Printf("Not enough ingredients\n");
+		return;
+	}
+
+	player->inventory.swevery -= 1;
+	player->inventory.redTwyre -= 1;
+	player->inventory.ferromycinium += 1;
+}
+
+void Cmd_CraftNeomycinium(const idCmdArgs& args) {
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+
+	if (player->inventory.swevery <= 0 || player->inventory.whiteTwyre <= 0) {
+		gameLocal.Printf("Not enough ingredients\n");
+		return;
+	}
+
+	player->inventory.swevery -= 1;
+	player->inventory.whiteTwyre -= 1;
+	player->inventory.neomycinium += 1;
+}
+
+void Cmd_CraftMonomycinium(const idCmdArgs& args) {
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+
+	if (player->inventory.swevery <= 0 || player->inventory.greenTwyre <= 0) {
+		gameLocal.Printf("Not enough ingredients\n");
+		return;
+	}
+
+	player->inventory.swevery -= 1;
+	player->inventory.greenTwyre -= 1;
+	player->inventory.monomycinium += 1;
+}
+
+// antibiotic use functions
 void Cmd_UseFerromycinium(const idCmdArgs& args) { // blood
 	idPlayer* player;
 	player = gameLocal.GetLocalPlayer();
@@ -3418,6 +3463,61 @@ void Cmd_UseMonomycinium(const idCmdArgs& args) { // nerves
 			player->health = 1;
 		}
 		player->inventory.monomycinium -= 1;
+	}
+}
+
+// consumable use functions
+void Cmd_Eat(const idCmdArgs& args) {
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+
+	if (player->inventory.food > 0) {
+		if (player->inventory.hunger < 20) {
+			player->inventory.hunger = 0;
+		}
+		else {
+			player->inventory.hunger -= 20;
+		}
+		player->inventory.food -= 1;
+	}
+}
+
+void Cmd_Drink(const idCmdArgs& args) {
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+
+	if (player->inventory.water > 0) {
+		if (player->inventory.thirst < 20) {
+			player->inventory.thirst = 0;
+		}
+		else {
+			player->inventory.thirst -= 20;
+		}
+		player->inventory.water -= 1;
+	}
+}
+
+void Cmd_Coffee(const idCmdArgs& args) {
+	idPlayer* player;
+	player = gameLocal.GetLocalPlayer();
+	if (!player)return;
+
+	if (player->inventory.coffeeBeans > 0) {
+		if (player->inventory.exhaustion < 20) {
+			player->inventory.exhaustion = 0;
+		}
+		else {
+			player->inventory.exhaustion -= 20;
+		}
+		if (player->health < 5) {
+			player->health = 1;
+		}
+		else {
+			player->health -= 5;
+		}
+		player->inventory.coffeeBeans -= 1;
 	}
 }
 
@@ -3630,9 +3730,22 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand("clearSymptoms", Cmd_ClearSymptoms, CMD_FL_GAME, "Clears uncovered symptoms");
 	
 // sneppo functional
+// crafting
 	cmdSystem->AddCommand("craftBone", Cmd_Craft_Bone, CMD_FL_GAME, "Make a bone tincture");
 	cmdSystem->AddCommand("craftNerves", Cmd_Craft_Nerves, CMD_FL_GAME, "Make a nerves tincture");
 	cmdSystem->AddCommand("craftBlood", Cmd_Craft_Blood, CMD_FL_GAME, "Make a blood tincture");
+	cmdSystem->AddCommand("craftFerro", Cmd_CraftFerromycinium, CMD_FL_GAME, "Make a ferromycinium antibiotic");
+	cmdSystem->AddCommand("craftNeo", Cmd_CraftNeomycinium, CMD_FL_GAME, "Make a neomycinium antibiotic");
+	cmdSystem->AddCommand("craftMono", Cmd_CraftMonomycinium, CMD_FL_GAME, "Make a monomycinium antibiotic");
+// antibiotic use
+	cmdSystem->AddCommand("ferro", Cmd_UseFerromycinium, CMD_FL_GAME, "Use a ferromycinium antibiotic");
+	cmdSystem->AddCommand("neo", Cmd_UseNeomycinium, CMD_FL_GAME, "Use a neomycinium antibiotic");
+	cmdSystem->AddCommand("mono", Cmd_UseMonomycinium, CMD_FL_GAME, "Use a monomycinium antibiotic");
+//consumable use
+	cmdSystem->AddCommand("eat", Cmd_Eat, CMD_FL_GAME, "Eat food");
+	cmdSystem->AddCommand("drink", Cmd_Drink, CMD_FL_GAME, "Drink water");
+	cmdSystem->AddCommand("coffee", Cmd_Coffee, CMD_FL_GAME, "Eat coffee beans");
+// tincture use
 	cmdSystem->AddCommand("bloodTinct", Cmd_UseBlood, CMD_FL_GAME, "Uses blood tincture and possibly reveals a symptom");
 	cmdSystem->AddCommand("bonesTinct", Cmd_UseBone, CMD_FL_GAME, "Uses bone tincture and possibly reveals a symptom");
 	cmdSystem->AddCommand("nervesTinct", Cmd_UseNerves, CMD_FL_GAME, "Uses nerves tincture and possibly reveals a symptom");

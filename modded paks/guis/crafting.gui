@@ -3,7 +3,7 @@ windowDef Desktop
 	rect	0,0,640,480
 	windowDef title_text
 	{
-		rect	199,15,243,62
+		rect	12,15,243,62
 		visible	1
 		forecolor	1,1,1,1
 		text	"Brewery"
@@ -16,7 +16,7 @@ windowDef Desktop
 		visible	1
 		windowDef bones_text
 		{
-			rect	240,202,160,36
+			rect	53,196,160,36
 			visible	1
 			forecolor	1,1,1,1
 			text	"Bones Tincture"
@@ -38,7 +38,7 @@ windowDef Desktop
 		}
 		windowDef blood_text
 		{
-			rect	240,249,160,36
+			rect	53,149,160,36
 			visible	1
 			forecolor	1,1,1,1
 			text	"Blood Tincture"
@@ -60,7 +60,7 @@ windowDef Desktop
 		}
 		windowDef nerves_text
 		{
-			rect	240,299,160,36
+			rect	53,243,160,36
 			visible	1
 			forecolor	1,1,1,1
 			text	"Nerves Tincture"
@@ -80,13 +80,229 @@ windowDef Desktop
 
 			}
 		}
+		windowDef ferro_text
+		{
+			rect	53,289,160,36
+			visible	1
+			forecolor	1,1,1,1
+			text	Ferromycinium
+			textscale	0.3
+			font	"fonts/marine"
+			bordersize	4
+			bordercolor	1,1,1,1
+			windowDef b_ferro
+			{
+				rect	0,0,160,36
+				visible	1
+
+				onActionRelease {
+					consoleCMD "craftFerro" ;
+					set "cmd" "play main_menu_selection" ;
+				}
+
+			}
+		}
+		windowDef neo_text
+		{
+			rect	53,336,160,36
+			visible	1
+			forecolor	1,1,1,1
+			text	"Neomycinium"
+			textscale	0.3
+			font	"fonts/marine"
+			bordersize	4
+			bordercolor	1,1,1,1
+			windowDef b_neo
+			{
+				rect	0,0,160,36
+				visible	1
+
+				onActionRelease {
+					consoleCMD "craftNeo" ;
+					set "cmd" "play main_menu_selection" ;
+				}
+
+			}
+		}
+		windowDef mono_text
+		{
+			rect	53,382,160,36
+			visible	1
+			forecolor	1,1,1,1
+			text	Monomycinium
+			textscale	0.3
+			font	"fonts/marine"
+			bordersize	4
+			bordercolor	1,1,1,1
+			windowDef b_mono
+			{
+				rect	0,0,160,36
+				visible	1
+
+				onActionRelease {
+					consoleCMD "craftMono" ;
+					set "cmd" "play main_menu_selection" ;
+				}
+
+			}
+		}
+		windowDef ferro_use
+		{
+			rect	373,289,160,36
+			visible	1
+			forecolor	0,0.501,1,1
+			text	Ferromycinium
+			textscale	0.3
+			font	"fonts/marine"
+			bordersize	4
+			bordercolor	0,0.501,1,1
+			windowDef b_use_ferro
+			{
+				rect	0,0,160,36
+				visible	1
+
+				onActionRelease {
+					consoleCMD "ferro" ;
+					set "cmd" "play main_menu_selection" ;
+				}
+
+			}
+		}
+		windowDef neo_use
+		{
+			rect	373,336,160,36
+			visible	1
+			forecolor	0,0.501,1,1
+			text	"Neomycinium"
+			textscale	0.3
+			font	"fonts/marine"
+			bordersize	4
+			bordercolor	0,0.501,1,1
+			windowDef b_use_neo
+			{
+				rect	0,0,160,36
+				visible	1
+
+				onActionRelease {
+					consoleCMD "neo" ;
+					set "cmd" "play main_menu_selection" ;
+				}
+
+			}
+		}
+		windowDef mono_use
+		{
+			rect	373,382,160,36
+			visible	1
+			forecolor	0,0.501,1,1
+			text	Monomycinium
+			textscale	0.3
+			font	"fonts/marine"
+			bordersize	4
+			bordercolor	0,0.501,1,1
+			windowDef b_use_mono
+			{
+				rect	0,0,160,36
+				visible	1
+
+				onActionRelease {
+					consoleCMD "mono" ;
+					set "cmd" "play main_menu_selection" ;
+				}
+
+			}
+		}
+		windowDef food_text
+		{
+			rect	373,150,160,36
+			visible	1
+			forecolor	0,0.501,1,1
+			text	"Eat food"
+			textscale	0.3
+			font	"fonts/marine"
+			bordersize	3
+			bordercolor	0,0.501,1,1
+			windowDef b_eat
+			{
+				rect	0,0,160,36
+				visible	1
+
+				onActionRelease {
+					consoleCMD "eat" ;
+					set "cmd" "play main_menu_selection" ;
+				}
+
+			}
+		}
+		windowDef water_text
+		{
+			rect	373,197,160,36
+			visible	1
+			forecolor	0,0.501,1,1
+			text	"Drink water"
+			textscale	0.3
+			font	"fonts/marine"
+			bordersize	4
+			bordercolor	0,0.501,1,1
+			windowDef b_drink
+			{
+				rect	0,0,160,36
+				visible	1
+
+				onActionRelease {
+					consoleCMD "drink" ;
+					set "cmd" "play main_menu_selection" ;
+				}
+
+			}
+		}
+		windowDef coffee_text
+		{
+			rect	373,243,160,36
+			visible	1
+			forecolor	0,0.501,1,1
+			text	"Eat coffee beans"
+			textscale	0.3
+			font	"fonts/marine"
+			bordersize	4
+			bordercolor	0,0.501,1,1
+			windowDef b_coffee
+			{
+				rect	0,0,160,36
+				visible	1
+
+				onActionRelease {
+					consoleCMD "coffee" ;
+					set "cmd" "play main_menu_selection" ;
+				}
+
+			}
+		}
 	}
 	windowDef brew_text
 	{
-		rect	259,138,123,45
+		rect	72,86,123,45
 		visible	1
 		forecolor	1,1,1,1
 		text	"Brew"
+		textscale	0.8
+		font	"fonts/marine"
+	}
+	windowDef use_text
+	{
+		rect	392,86,123,45
+		visible	1
+		forecolor	0,0.501,1,1
+		text	"Use"
+		textscale	0.8
+		font	"fonts/marine"
+	}
+	windowDef title_text2
+	{
+		rect	304,21,299,62
+		visible	1
+		forecolor	0,0.501,1,1
+		text	"Consumables"
 		textscale	0.8
 		font	"fonts/marine"
 	}

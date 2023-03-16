@@ -2059,7 +2059,7 @@ void idPlayer::Spawn( void ) {
 // set survival stats
 	inventory.hunger = 50; 
 	inventory.thirst = 25; 
-	inventory.infection = 55; 
+	inventory.infection = 50; 
 	inventory.exhaustion = 75; 
 
 // survival pulse set
@@ -2077,9 +2077,9 @@ void idPlayer::Spawn( void ) {
 	inventory.bloodTincture = 0;
 	inventory.boneTincture = 0;
 	inventory.nervesTincture = 0;
-	inventory.ferromycinium = 1;
-	inventory.neomycinium = 2;
-	inventory.monomycinium = 3;
+	inventory.ferromycinium = 0;
+	inventory.neomycinium = 0;
+	inventory.monomycinium = 0;
 // starting items
 	inventory.coffeeBeans = 4;
 	inventory.food = 3;

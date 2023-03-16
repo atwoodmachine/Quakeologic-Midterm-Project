@@ -2780,7 +2780,7 @@ windowDef Desktop
 	}
 	windowDef neo_text
 	{
-		rect	467,199,116,18
+		rect	467,219,116,18
 		visible	1
 		forecolor	1,1,1,1
 		text	"Neomycinium:"
@@ -2790,7 +2790,7 @@ windowDef Desktop
 	}
 	windowDef num_neo
 	{
-		rect	585,199,36,18
+		rect	585,219,36,18
 		visible	1
 		forecolor	1,1,1,1
 		text	"gui::neomycinium"
@@ -2799,7 +2799,7 @@ windowDef Desktop
 	}
 	windowDef num_ferro
 	{
-		rect	585,219,36,18
+		rect	585,200,36,18
 		visible	1
 		forecolor	1,1,1,1
 		text	"gui::ferromycinium"
@@ -2808,7 +2808,7 @@ windowDef Desktop
 	}
 	windowDef ferro_text
 	{
-		rect	467,219,116,18
+		rect	467,200,116,18
 		visible	1
 		forecolor	1,1,1,1
 		text	"Ferromycinium:"
