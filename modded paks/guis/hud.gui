@@ -2546,19 +2546,19 @@ windowDef Desktop
 		textscale	0.2
 		textstyle	2
 	}
-	windowDef water_text
+	windowDef swevery_text
 	{
 		rect	467,122,116,18
 		visible	1
 		forecolor	1,1,1,1
-		text	"Water:"
+		text	"Swevery:"
 		textscale	0.2
 		font	"fonts/marine"
 		textstyle	2
 	}
 	windowDef num_water
 	{
-		rect	585,122,36,18
+		rect	585,299,36,18
 		visible	1
 		forecolor	1,1,1,1
 		text	"gui::water"
@@ -2871,6 +2871,25 @@ windowDef Desktop
 		text	"Food:"
 		textscale	0.2
 		font	"fonts/marine"
+		textstyle	2
+	}
+	windowDef water_text
+	{
+		rect	467,299,116,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"Water:"
+		textscale	0.2
+		font	"fonts/marine"
+		textstyle	2
+	}
+	windowDef num_swevery
+	{
+		rect	585,122,36,18
+		visible	1
+		forecolor	1,1,1,1
+		text	"gui::swevery"
+		textscale	0.2
 		textstyle	2
 	}
 }
