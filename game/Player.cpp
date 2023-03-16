@@ -3479,7 +3479,7 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 		_hud->SetStateInt("swevery", inventory.swevery);
 	}
 	temp = _hud->State().GetInt("water");
-	if (temp != inventory.greenTwyre) {
+	if (temp != inventory.water) {
 		_hud->SetStateInt("water", inventory.water);
 	}
 	temp = _hud->State().GetInt("blood_tinct");

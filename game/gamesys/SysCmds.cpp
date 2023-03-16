@@ -3103,9 +3103,10 @@ void Cmd_Craft_Blood(const idCmdArgs& args) {
 		gameLocal.Printf("Not enough ingredients");
 		return;
 	}
+
+	player->inventory.water -= 1;
 	player->inventory.whiteTwyre -= 1;
 	player->inventory.redTwyre -= 1;
-	player->inventory.water -= 1;
 	player->inventory.bloodTincture += 1;
 }
 
