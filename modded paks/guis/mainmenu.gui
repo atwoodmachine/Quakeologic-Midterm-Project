@@ -1986,7 +1986,7 @@ windowDef Desktop
 				rect	13,126,612,284
 				visible	1
 				forecolor	1,1,1,1
-				text	"Welcome to Quakeologic, a surival mod for Quake 4. The player has several new meters to keep track of: exhaustion, thirst, and hunger, which gradually increase over time. If these values reach 100, the players health will begin to decrease. If multiple stats are at their maximum, health will decrease even faster. The player has the ability to craft items through the Menkhu Craft screen in the pause menu. Simply click the buttons to craft the items. The crafting recipes are as follows: 1 water + 1 white twyre + 1 red twyre = 1 blood tincture, 1 water + 1 white twyre + 1 green twyre = 1 bone tincture, 1 water + 1 red twyre + 1 green twyre = 1 nerves tincture, 1 swevery + 1 red twyre = 1 Neomycinium, 1 swevery + 1 red twyre = 1 Ferromycinium, 1 swevery + 1 green twyre = 1 Monomycinium. Tinctures are used to diagnose illness. By using a specific tincture, you reveal symptoms that reside on the respective layer, however, tinctures harm your health. When you know which layer the disease lies on, using the appropri"
+				text	"Welcome to Quakeologic, a surival mod for Quake 4. The player has several new meters to keep track of: exhaustion, thirst, and hunger, which gradually increase over time. If these values reach 100, the players health will begin to decrease. If multiple stats are at their maximum, health will decrease even faster. Hunger is reduced by eating food, thirst is reduced by drinking water, and exhaustion is reduced by eating coffee beans (be warned that this also harms your health. Just like real life.). Infection also passively increases over time. If it reaches its maximum, you die. The player has the ability to craft items through the Menkhu Craft screen in the pause menu. Simply click the buttons to craft the items. The crafting recipes are as follows: 1 water + 1 white twyre + 1 red twyre = 1 blood tincture, 1 water + 1 white twyre + 1 green twyre = 1 bone tincture, 1 water + 1 red twyre + 1 green twyre = 1 nerves tincture, 1 swevery + 1 red twyre = 1 Neomycinium, 1 swevery + 1 red twyre = 1 Ferromycinium, 1 swevery + 1 green twyre = 1 Monomycinium. Tinctures are used to diagnose illness. By using a specific tincture, you reveal symptoms that reside on the respective layer. When you know which layer the disease lies on, using the appropriate antibiotic reduces your infection. However, antibiotics also harm your health, and using the wrong one will not reduce your infection. Press 8 to diagnose a symptom on the blood layer, 9 for the bones layer, and 0 for the nerves layer. Remeber these actions consume their respective layer's tincture as well."
 				textscale	0.2
 				font	"fonts/marine"
 				textstyle	2
@@ -9130,15 +9130,6 @@ windowDef Desktop
 						notime	1
 					}
 				}
-			}
-			windowDef unnamed
-			{
-				rect	32,4,372,71
-				visible	1
-				forecolor	1,1,1,1
-				text	"DEBUG TEXT"
-				textscale	1
-				font	"fonts/marine"
 			}
 		}
 		windowDef pop_p_mods
