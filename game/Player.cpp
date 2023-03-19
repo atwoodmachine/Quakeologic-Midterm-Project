@@ -3454,7 +3454,7 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 		_hud->SetStateInt("player_thirst", inventory.thirst);
 	}
 	temp = _hud->State().GetInt("player_exhaustion");
-	if (temp != inventory.hunger) {
+	if (temp != inventory.exhaustion) {
 		_hud->SetStateInt("player_exhaustion", inventory.exhaustion);
 	}
 	temp = _hud->State().GetInt("player_infection");
