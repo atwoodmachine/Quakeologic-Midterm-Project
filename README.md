@@ -1,5 +1,5 @@
 # Quakeologic Midterm Game Mod Project
-Welcome to Quakeologic, a survival mod for Quake 4. 
+Welcome to Quakeologic, a survival mod for Quake 4. To play, simply download the game000 and pak001 files.
 
 Survival:
 
